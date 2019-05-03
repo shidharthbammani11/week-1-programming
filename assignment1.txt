@@ -1,0 +1,14 @@
+S1 = input("String 1: ")
+S2 = input("String 2: ")
+
+def lcs(i, j):
+
+    if not i or not j:
+        return ""
+    x, xs, y, ys = i[0], i[1:], j[0], j[1:]
+    if x == y:
+        return x + lcs(xs, ys)
+    else:
+        return max(lcs(i, ys), lcs(xs, j), key=len)
+
+print(lcs(S1,S2))

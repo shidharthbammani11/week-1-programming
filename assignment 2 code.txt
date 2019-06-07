@@ -1,0 +1,153 @@
+import random
+
+cards = [
+["John Snow", 30, 90, 70],
+["LittleFinger", 90, 30, 40],
+["Tyrion Lannister", 80, 40, 20],
+["Cercei Lannister", 70, 10, 80],
+["Danaerys Targaryen", 75, 60, 90],
+["Arya Stark", 85, 89, 30],
+["Night King", 94, 92, 100],
+["Tormund Giantsbane", 25, 85, 50],
+["Sansa Stark", 89, 15, 45],
+["The Hound", 10, 87, 11],
+["The Mountain", 11, 95, 35],
+["Brandon Stark", 95, 5, 15],
+["Jaime Lannister", 31, 70, 55],
+["Euron Greyjoy", 81, 75, 60],
+["Jacquen Hgar", 88, 91, 15],
+["Greyworm", 69, 84, 53]]
+
+random.shuffle(cards)
+
+Player1Deck = []
+ComputerDeck = []
+outdatedDeck = []
+
+# Deal the cards
+while len(cards) > 0:
+    Player1Deck.append(cards.pop(0))
+    ComputerDeck.append(cards.pop(0))
+
+# # rolling dices
+# print("GOT CARDS GAME: Player1 vs Player2!")
+# begin_play = input("Let The Round Begin!! \n Roll the Dice ")
+
+# def Roll():
+#     Player1 = 0
+#     Computer = 0
+#     rounds = 1
+#     global playerTurn
+#     while rounds != 3:
+#         print("Round" + str(rounds))
+#         Player1 = dice_roll()
+#         Computer = dice_roll()
+#         print("Player1 rollcount:" + str(Player1))
+#         print("Computer rollcount:" + str(Computer))
+#         if Player1<Computer:
+#             print("Computer calls first!")
+#             playerTurn = False
+#         elif Player1>Computer:
+#             print("Player1 calls first!")
+#             playerTurn = True
+#         elif Player1==Computer:
+#             print("It's a tie. Roll again!")
+#             rounds = rounds + 1
+
+# def dice_roll():
+#     dice_roll = random.randint(1,6)
+#     return dice_roll    
+# Roll()
+
+global playerTurn
+
+def Dice_Roll_1():
+    DiceRoll_1= random.randint(1, 6)
+    return DiceRoll_1
+DiceResult_1=Dice_Roll_1()
+print("Player 1 Dice Result %d" % DiceResult_1)
+
+def Dice_Roll_2():
+    DiceRoll_2 = random.randint(1, 6)
+    return DiceRoll_2
+DiceResult_2=Dice_Roll_2()
+print("Computer Dice Result %d" % DiceResult_2)
+
+if DiceResult_1 < DiceResult_2:
+    print("Computer Won and Start the game")
+    playerTurn = False
+elif DiceResult_1 > DiceResult_2:
+    print("Player 1 Won and start the game")
+    playerTurn = True
+else :
+    print("Both Combination same, Try again")
+
+player1_score = 0
+computer_score = 0
+
+for x in range(len(Player1Deck)):
+    for y in range(len(ComputerDeck)):
+        if playerTurn == True:
+            print("this is your first card" + str(Player1Deck[0]))
+            attribute1 = input("Which characteristics would you like to choose out of INTELLIGENCE (i), BATTLESTRENGTH (b), MANPOWER (m) ")
+            if attribute1 == "i":
+                if Player1Deck[0][1] > ComputerDeck[0][1]:
+                    print("Intelligence",Player1Deck[0][1] ,"vs", ComputerDeck[0][1])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("player 1 wins")
+                    player1_score = player1_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                elif Player1Deck[0][1] < ComputerDeck[0][1]:
+                    print("Intelligence",Player1Deck[0][1] ,"vs", ComputerDeck[0][1])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("Computer wins")
+                    computer_score = computer_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                else:
+                    exit()
+            elif attribute1 == "b":
+                if Player1Deck[0][2] > ComputerDeck[0][2]:
+                    print("Intelligence",Player1Deck[0][2] ,"vs", ComputerDeck[0][2])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("player 1 wins")
+                    player1_score = player1_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                elif Player1Deck[0][2] < ComputerDeck[0][2]:
+                    print("Intelligence",Player1Deck[0][2] ,"vs", ComputerDeck[0][2])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("Computer wins")
+                    computer_score = computer_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                else:
+                    exit()
+            elif attribute1 == "m":
+                if Player1Deck[0][3] > ComputerDeck[0][3]:
+                    print("Intelligence",Player1Deck[0][3] ,"vs", ComputerDeck[0][3])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("player 1 wins")
+                    player1_score = player1_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                elif Player1Deck[0][3] < ComputerDeck[0][3]:
+                    print("Intelligence",Player1Deck[0][3] ,"vs", ComputerDeck[0][3])
+                    print("Computer's card" + str(ComputerDeck[0]))
+                    print("Computer wins")
+                    computer_score = computer_score + 1
+                    outdatedDeck.append(Player1Deck.pop(0))
+                    outdatedDeck.append(ComputerDeck.pop(0))
+                else:
+                    exit()
+            else:
+                print("please select valid characterstics")        
+        if playerTurn == False:
+            attribute2 = max(ComputerDeck[y])
+            print(attribute2)
+
+print("total computer score=", computer_score)
+print("total player1 score= ", player1_score)
+
+
